@@ -1,0 +1,255 @@
+body {
+    background-color:#2e3349;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#label {
+    color: white;
+    font-family:Segoe UI;
+    position: relative;
+    bottom: 15px;
+    right: 5px;
+}
+
+button {
+    color:white;
+    background-color:#181e36;
+    /* border-color:#181e36; */
+    border:none;
+    font-size: 12px;
+    font-family:Segoe UI;
+    text-align: center;
+    /* cursor: pointer; */
+    outline: none;
+    transition-duration: 100ms;
+    position: relative;
+    z-index: 1;
+}
+
+/* button::before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    right: 25%;
+    bottom: 25%;
+    opacity: 0;
+    content: "";
+    background-color: #30d5c8;
+}
+
+button:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 1;
+    z-index:-1
+} */
+
+.main_btns {
+    height: 40px;
+    width:75px;
+    position: relative;
+    left:222px;
+    bottom:150px;
+    cursor: pointer;
+}
+
+.main_btns::before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    right: 25%;
+    bottom: 25%;
+    opacity: 0;
+    content: "";
+    background-color: #30d5c8;
+}
+
+.main_btns:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 1;
+    z-index:-1
+}
+
+.notmain_btns {
+    height: 20px;
+    width: 50px;
+    position: relative;
+    left:227px;
+    bottom:53px;
+    cursor: pointer;
+}
+
+.notmain_btns::before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    right: 25%;
+    bottom: 25%;
+    opacity: 0;
+    content: "";
+    background-color: #30d5c8;
+}
+
+.notmain_btns:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 1;
+    z-index:-1;
+}
+
+.other_btns {
+    height: 30px;
+    width: 75px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+.other_btns::before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    right: 25%;
+    bottom: 25%;
+    opacity: 0;
+    content: "";
+    background-color: #30d5c8;
+}
+
+.other_btns:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 1;
+    z-index:-1
+}
+
+.small_btns {
+    height: 20px;
+    width: 20px;
+    font-size: 12px;
+    font-family:Segoe UI;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    /* bottom: 471px; */
+    bottom: 5px;
+}
+
+.small_btns::before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    right: 25%;
+    bottom: 25%;
+    opacity: 0;
+    content: "";
+    background-color: #30d5c8;
+}
+
+.small_btns:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 1;
+    z-index:-1
+}
+
+#Settings_btn {text-align: center}
+#Browse_btn {text-align: center}
+#Setup_btn {text-align: center}
+
+#Loaded_btn {
+    height: 30px;
+    width: 75px;
+    text-align: center;
+    position: absolute;
+    right: 75px;
+    bottom: 0px;
+    color: #30d5c8;
+}
+
+#Add_btn {
+    position: absolute;
+    left: 185px;
+}
+
+#Sub_btn {
+    position: absolute;
+    left: 205px;
+}
+
+#box {
+    outline: none;
+    border: none;
+    color:white;
+    background-color:#181e36;
+    /* -webkit-appearance: none; */
+    height: 20px;
+    width: 182px;
+    position: absolute;
+    bottom: 5px;
+    left: 3px;
+    font-size: 12px;
+}
+
+#list {
+    color:white;
+    background-color:#181e36;
+    width:222px;
+    height:140px;
+    position: relative;
+    bottom: 50px;
+    right: 5px;
+    outline: none;
+    border: none;
+    font-size: 12px;
+}
+
+::-webkit-scrollbar {
+    background:white;
+    width: 10px;
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #181e36;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background:#30d5c8;
+}
+
+
+.notmain_parent {
+    font-size: 0;
+}
