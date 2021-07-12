@@ -9,7 +9,7 @@
     "dist": "electron-builder"
   },
   "author": "ΛH",
-  "license": "ISC",
+  "license": "MIT",
   "build": {
     "appId": "com.electron.zenmaploader",
     "win": {
