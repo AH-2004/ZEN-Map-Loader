@@ -1,0 +1,39 @@
+{
+  "name": "maploader",
+  "productName": "ZEN Map Loader",
+  "version": "1.1.0",
+  "description": "Rocket League Custom Map Loader",
+  "main": "./main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "author": "ΛH",
+  "license": "ISC",
+  "build": {
+    "appId": "com.electron.zenmaploader",
+    "win": {
+      "target": [
+        "portable",
+        "NSIS"
+      ],
+      "icon": "render/Assets/win/icon.ico"
+    },
+    "portable": {
+      "artifactName": "ZEN Map Loader.exe"
+    },
+    "directories": {
+      "output": "build/dist"
+    },
+    "extraFiles": [
+      "setup"
+    ]
+  },
+  "dependencies": {
+    "electron-window-state": "^5.0.3"
+  },
+  "devDependencies": {
+    "electron": "^12.0.14",
+    "electron-builder": "^22.11.7"
+  }
+}

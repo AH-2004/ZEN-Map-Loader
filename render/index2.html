@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zen Map Loader</title>
+    <link rel="stylesheet" href="index2.css"/>
+</head>
+
+<body>
+    <section class="Section_1">
+        <div>
+            <div>
+                <p id="label" class="unselectable">Settings</p>
+                <grid class="notmain_parent">
+                    <button class="notmain_btns" id="Setup_btn">Setup</button>
+                    <button class="notmain_btns" id="Browse_btn">Browse</button>
+                    <button class="notmain_btns" id="Settings_btn">Settings</button>
+                </grid>
+    </section>
+
+    <section class="Section_2">
+        <div>
+            <grid class="other_parent" class="unselectable">
+                <button class="other_btns" class="unselectable" id="Reset_btn">Reset Setup</button>
+                <button class="other_btns" class="unselectable" id="Hamachi_btn">Hamachi</button>
+                <button class="other_btns" class="unselectable" id="Bakkes_btn">Bakkesmod</button>
+            </grid>
+        </div>
+    </section>
+
+    <!-- <section class="Section_3">
+        <div>
+            <grid class="main_checkboxes" class="unselectable">
+                <div class="checkboxes">
+                    <input type="checkbox" id="box_1">
+                    <label for="box_1" class="unselectable">Dark Mode</label>
+                </div>
+                <div class="checkboxes">
+                    <input type="checkbox" id="box_2">
+                    <label for="box_2" class="unselectable">Test 2</label>
+                </div>
+                <div class="checkboxes">
+                    <input type="checkbox" id="box_3">
+                    <label for="box_3" class="unselectable">Test 3</label>
+                </div>
+                <div class="checkboxes">
+                    <input type="checkbox" id="box_4">
+                    <label for="box_4" class="unselectable">Test 4</label>
+                </div>
+            </grid>
+        </div>
+    </section> -->
+
+    <script>
+        const ipcRenderer = require('electron').ipcRenderer;
+
+        //Reset_btn        
+        const Reset_btn_click = document.getElementById('Reset_btn');
+        
+        Reset_btn_click.addEventListener('click', function () {        
+            ipcRenderer.send("Reset_btn_click");
+        });
+
+        //Hamachi_btn
+        const Hamachi_btn_click = document.getElementById('Hamachi_btn');
+        
+        Hamachi_btn_click.addEventListener('click', function () {        
+            ipcRenderer.send("Hamachi_btn_click");
+        });
+
+        //Bakkes_btn
+        const Bakkes_btn_click = document.getElementById('Bakkes_btn');
+
+        Bakkes_btn_click.addEventListener('click', function () {
+            ipcRenderer.send("Bakkes_btn_click")
+        });
+    </script>
+</body>
+</html>

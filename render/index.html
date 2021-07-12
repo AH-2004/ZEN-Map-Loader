@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zen Map Loader</title>
+    <link rel="stylesheet" href="index.css"/>
+</head>
+
+<body>
+    <section class="Section_1">
+        <div>
+            <div>
+                <p id="label" class="unselectable">
+                    <span>ZΞΠ</span>
+                    <span>Map Loader</span>
+                </p>
+                <grid class="notmain_parent">
+                    <button class="notmain_btns" id="Setup_btn">Setup</button>
+                    <button class="notmain_btns" id="Browse_btn">Browse</button>
+                    <button class="notmain_btns" id="Settings_btn">Settings</button>
+                </grid>
+            </div>
+            <grid>
+                <select id="list" multiple>
+                </select>
+            </grid>
+        </div>
+    </section>
+
+    <section class="Section_2">
+        <div>
+            <grid class="main_parent">
+                <button class="main_btns" id="Load_btn">Load</button>
+                <button class="main_btns" id="Unload_btn">Unload</button>
+            </grid>
+        </div>
+    </section>
+
+    <section class="Section_3">
+        <div>
+            <grid class="other_parent">
+                <button class="other_btns" id="Online_btn">Online</button>
+                <button id="Loaded_btn"></button>
+                <button id="Current_map_btn"></button>
+            </grid>
+            <grid class="small_parent">
+                <button class="small_btns" id="Add_btn">+</button>
+                <button class="small_btns" id="Sub_btn">-</button>
+                <select id="box">
+                    <option value="Labs_Underpass_P.upk">Underpass - Soccar (default)</option>
+                    <option value="Labs_Utopia_P.upk">Utopia Retro - Soccar</option>
+                    <option value="CS_HW_P.upk">Rivals Arena - Soccar</option>
+                    <option value="Labs_Cosmic_V4_P.upk">Cosmic - Soccar</option>
+                </select>
+            </grid>
+        </div>
+    </section>
+
+    <script>
+        const ipcRenderer = require('electron').ipcRenderer;
+        const listbox = document.getElementById('list')
+
+        ipcRenderer.send("auto_list_grab")
+
+        ipcRenderer.on('Loaded_msg', function (event, arg, arg2) {
+            if (arg === 'Loaded') {
+                document.getElementById('Loaded_btn').textContent = arg
+                document.getElementById('Current_map_btn').textContent = arg2
+                } else {
+                    if (arg === 'Unloaded') {
+                    document.getElementById('Loaded_btn').textContent = arg
+                    document.getElementById('Current_map_btn').textContent = null
+                    } else {
+                        if (arg === null) {
+                            document.getElementById('Loaded_btn').textContent = arg
+                            document.getElementById('Current_map_btn').textContent = null
+                        }
+                    }
+                }
+        })
+
+        ipcRenderer.on('clear_list_msg', function (event, arg) {
+            if (arg === 'clear_list') {
+                    listbox.innerHTML = "";
+                } else {
+                    console.log("refresh falied");
+                }
+        })
+
+        //Browse_btn
+        const Browse_btn_click = document.getElementById('Browse_btn');
+        
+        Browse_btn_click.addEventListener('click', function () {
+            listbox.innerHTML = "";
+         
+            ipcRenderer.send("Browse_button_click");
+        });
+
+        //Setup_btn       
+        const Setup_btn_click = document.getElementById('Setup_btn');
+        
+        Setup_btn_click.addEventListener('click', function () {
+        
+            ipcRenderer.send("Setup_button_click");
+        });
+
+        //Settings_btn
+        const Settings_btn_click = document.getElementById('Settings_btn');
+
+        Settings_btn_click.addEventListener('click', function () {
+
+            ipcRenderer.send("Settings_btn_click");
+        });
+
+        //Online_btn
+        const Online_btn_click = document.getElementById('Online_btn');
+
+        Online_btn_click.addEventListener('click', function() {
+
+            ipcRenderer.send("Online_btn_click");
+        });
+
+        //Add_btn
+        const Add_btn_click = document.getElementById('Add_btn');
+        Add_btn_click.addEventListener('click', function() {
+
+            ipcRenderer.send("Add_btn_click");
+
+            ipcRenderer.on('async-clear_reply', (event, arg) => {
+                if (arg === 'clear_list') {
+                    listbox.innerHTML = "";
+                } else {
+                    console.log("refresh falied");
+                }
+            })
+        });
+
+        //Sub_btn
+        const Sub_btn_click = document.getElementById('Sub_btn');
+        Sub_btn_click.addEventListener('click', function() {
+            var arg = document.getElementById('list').value
+
+            ipcRenderer.send("Sub_btn_click", arg);
+            ipcRenderer.on('async-clear_reply', (event, arg) => {
+                if (arg === 'clear_list') {
+                    listbox.innerHTML = "";
+                } else {
+                    console.log("refresh falied");
+                }
+            })
+        });
+
+        //Unload_btn
+        const Unload_btn_click = document.getElementById('Unload_btn');
+
+        Unload_btn_click.addEventListener('click', function() {     
+            ipcRenderer.send("Unload_btn_click");
+        })
+
+        //Load_btn
+        const Load_btn_click = document.getElementById('Load_btn');
+        Load_btn_click.addEventListener('click', function() {
+            var arg = document.getElementById('list').value
+            var arg2 = document.getElementById('box').value
+            ipcRenderer.send("Load_btn_click", arg, arg2);
+        })
+
+        //listbox
+        ipcRenderer.on('async-reply', (event, arg) => {
+            var select = document.getElementById("list"),
+                 array = (arg)
+         
+         for(var i = 0; i < array.length; i++)
+         {
+             var option = document.createElement("OPTION"),
+                 text = document.createTextNode(array[i]);
+             option.appendChild(text);
+             option.setAttribute("value",array[i]);
+             select.insertBefore(option,select.lastChild);
+         }
+        })        
+    </script>
+</body>
+</html>
